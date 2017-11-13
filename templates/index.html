@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='jquery321.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    
+    <title>Calortrol</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h3 class="text-muted">Control de la calefacción</h3>
+        </div>
+        <div class="jumbotron">
+            <h2>Controla ahora</h2>
+            <p class="lead"></p>
+            <p>
+                <a class="btn btn-lg {% if heating_ON %}disabled{% endif %} btn-success" href="switchOn" role="button">Encender</a>
+                <a class="btn btn-lg {% if not heating_ON %}disabled{% endif %} btn-danger" href="switchOff" role="button">Apagar</a>
+            </p>
+        </div>
+        <div class="jumbotron">
+            <form class="form-horizontal" action="{{ url_for('save_time') }}">
+            <h3>¿Cuando quieres que tu mierda caliente?</h3>
+            <p class="lead"></p>
+            <p>
+                <div class="col-xs-4">
+                    <label for="sel1">Temperatura deseada:</label>
+                    <input type="text" class="form-control" id="usr">
+                </div>
+                <div class="col-xs-4">
+                    <label for="sel1">Hora:</label>
+                    <select class="form-control" id="sel1">
+                        <option>7:00</option>
+                        <option>7:30</option>
+                        <option>8:00</option>
+                        <option>8:30</option>
+                        <option>9:00</option>
+                        <option>9:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>12:00</option>
+                        <option>12:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                        <option>18:00</option>
+                        <option>18:30</option>
+                        <option>19:00</option>
+                        <option>19:30</option>
+                        <option>20:00</option>
+                        <option>20:30</option>
+                        <option>21:00</option>
+                        <option>21:30</option>
+                        <option>22:00</option>
+                        <option>22:30</option>
+                        <option>23:00</option>
+                        <option>23:30</option>
+                        <option>00:00</option>
+                        <option>00:30</option>
+                        
+                    </select>
+                </div>
+            </p>
+            <p><a class="btn btn-primary" href="save_time" role="button">Añadir</a></p>
+            </form>
+            <div>
+                {% for x in times %}
+                <div>{{ x }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; Esteve 2017</p>
+    </footer>
+</div>
+</body>
+</html>
